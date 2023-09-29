@@ -32,6 +32,7 @@ const (
 	mapSize = 25165824
 )
 
+// COMM: 타깃 함수에 대한 자세한 정보
 // TargetDetails are the details about a target function.
 type TargetDetails struct {
 	PID               int
@@ -41,17 +42,19 @@ type TargetDetails struct {
 	AllocationDetails *AllocationDetails
 }
 
+// COMM: 활당된 메모리에 대한 자세한 정보, 함수에 할당된 메모리를 말하는건가?
 // AllocationDetails are the details about allocated memory.
 type AllocationDetails struct {
 	StartAddr uint64
 	EndAddr   uint64
 }
 
+// COMM: 타깃 함수 나타내는 구조체
 // Func represents a function target.
 type Func struct {
 	Name          string
-	Offset        uint64
-	ReturnOffsets []uint64
+	Offset        uint64   // COMM: 이 offset이라는게 어려워
+	ReturnOffsets []uint64 // COMM: return offset이라는게 정확히 뭘까?
 }
 
 // IsRegistersABI returns if t is supported.

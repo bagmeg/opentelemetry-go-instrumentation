@@ -26,6 +26,7 @@ import (
 	"go.opentelemetry.io/auto/internal/pkg/log"
 )
 
+// COMM: 실행주인 프로세스를 찾는다.
 // Analyzer is used to find actively running processes.
 type Analyzer struct {
 	done          chan bool
@@ -40,6 +41,7 @@ func NewAnalyzer() *Analyzer {
 	}
 }
 
+// COMM: 실행중인 프로세스에서 타깃을 찾는 역할. 찾았다면 PID 반환
 // DiscoverProcessID searches for the target as an actively running process,
 // returning its PID if found.
 func (a *Analyzer) DiscoverProcessID(target *TargetArgs) (int, error) {
@@ -48,7 +50,7 @@ func (a *Analyzer) DiscoverProcessID(target *TargetArgs) (int, error) {
 		case <-a.done:
 			log.Logger.V(0).Info("stopping process id discovery due to kill signal")
 			return 0, errors.ErrInterrupted
-		case <-a.pidTickerChan:
+		case <-a.pidTickerChan: // COMM: 프로세스를 찾을때까지 반복
 			pid, err := a.findProcessID(target)
 			if err == nil {
 				log.Logger.V(0).Info("found process", "pid", pid)

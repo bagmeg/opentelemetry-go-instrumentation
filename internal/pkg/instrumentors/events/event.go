@@ -19,6 +19,7 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
+// COMM: 이벤트는 계측을 실행중인 패키지에서 발생하는 텔레메트리 이벤트
 // Event is a telemetry event that happens within an instrumented package.
 type Event struct {
 	Library           string

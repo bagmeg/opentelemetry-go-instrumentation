@@ -43,10 +43,12 @@ const (
 // Information about the runtime environment for inclusion in User-Agent, e.g. "go/1.18.2 (linux/amd64)".
 var runtimeInfo = fmt.Sprintf("%s (%s/%s)", strings.Replace(runtime.Version(), "go", "go/", 1), runtime.GOOS, runtime.GOARCH)
 
+// COMM: opentelemetry 가 이벤트에 대해 생성하는 telemetry를 관리한다.
+// COMM: telemetry에 trace가 포함되는듯? trace 생성하는 것들 가지고 있는거보면
 // Controller handles OpenTelemetry telemetry generation for events.
 type Controller struct {
 	tracerProvider trace.TracerProvider
-	tracersMap     map[string]trace.Tracer
+	tracersMap     map[string]trace.Tracer // COMM: Tracer는 스팬 생성하는 애
 	bootTime       int64
 }
 

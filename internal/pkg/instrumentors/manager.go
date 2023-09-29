@@ -33,9 +33,11 @@ import (
 // Error message returned when unable to find all instrumentation functions.
 var errNotAllFuncsFound = fmt.Errorf("not all functions found for instrumentation")
 
+// COMM: Instrumentor 인스턴스를 핸들링한다.
+// COMM: Instrumentor는 데이터 수집 위해 코드나 앱에 계측 추가하는 책임을 가진 애
 // Manager handles the management of [Instrumentor] instances.
 type Manager struct {
-	instrumentors  map[string]Instrumentor
+	instrumentors  map[string]Instrumentor // COMM: map으로 가지고 있네...??
 	done           chan bool
 	incomingEvents chan *events.Event
 	otelController *opentelemetry.Controller

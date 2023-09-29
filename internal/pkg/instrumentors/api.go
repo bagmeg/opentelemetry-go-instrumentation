@@ -19,6 +19,7 @@ import (
 	"go.opentelemetry.io/auto/internal/pkg/instrumentors/events"
 )
 
+// COMM: go 패키지에 계측을 제공한다.
 // Instrumentor provides instrumentation for a Go package.
 type Instrumentor interface {
 	// LibraryName returns the package name being instrumented.

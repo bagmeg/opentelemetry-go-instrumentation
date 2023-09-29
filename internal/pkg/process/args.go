@@ -23,6 +23,7 @@ import (
 // instrumented executable.
 const ExePathEnvVar = "OTEL_GO_AUTO_TARGET_EXE"
 
+// COMM: 바이너리 타깃 정보
 // TargetArgs are the binary target information.
 type TargetArgs struct {
 	ExePath string
